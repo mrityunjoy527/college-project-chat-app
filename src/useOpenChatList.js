@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useOpenChatList = create((set) => ({
-  openChatList: false,
+  openChatList: window.screen.width > 1240,
   toggle: (fl) => {
     set({ openChatList: fl });
   },

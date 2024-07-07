@@ -8,20 +8,29 @@ import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import useOpenChatList from "../../useOpenChatList";
+import EmojiPicker from "emoji-picker-react";
+import Logout from "../logout/Logout";
 
 const Chat = () => {
 
-    const {openChatList, toggle } = useOpenChatList();
+    const { openChatList, toggle } = useOpenChatList();
     const [showMore, setMore] = useState(false);
+    const [openEmoji, setEmoji] = useState(false);
+    const [text, setText] = useState("");
+    const [openLogout, setLogout] = useState(false);
 
     const handleOpenChatList = () => {
         toggle(!openChatList);
     }
 
+    const handleSend = () => {
+
+    }
+
     return <div className="chat">
         <div className="userInfo">
             <div className="user">
-                <img className="menu" src={openChatList ? "./cross.png" : "./burger.png"} alt="" onClick={handleOpenChatList} style={{left: openChatList? "80%": "0"}}/>
+                <img className="menu" src={openChatList ? "./cross.png" : "./burger.png"} alt="" onClick={handleOpenChatList} style={{ left: openChatList ? "80%" : "0" }} />
                 <div className="pic">
                     <img src='./tom.png' alt="" />
                     <div className="dot"></div>
@@ -32,9 +41,10 @@ const Chat = () => {
                 </div>
             </div>
             <div className="options">
-                <TbPhoneCall className="option-icon" />
-                <MdVideoCall className="option-icon" />
-                <IoMdMore className="option-icon"/>
+                <TbPhoneCall className="option-icon" title="Audio Call" />
+                <MdVideoCall className="option-icon" title="Video Call" />
+                <IoMdMore className="option-icon" title="More" onClick={() => {setLogout(prev => !prev)}}/>
+                {openLogout && <Logout/>}
             </div>
         </div>
         <div className="showMessage">
@@ -115,11 +125,15 @@ const Chat = () => {
             </div>
         </div>
         <div className="typeMessage">
-            <MdAttachFile className="icons" />
-            <input type="text" placeholder="Type a message..." />
-            <IoSend className="icons" />
-            <MdKeyboardVoice className="icons" />
-            <BsEmojiSmileFill className="icons" />
+            <input id="file" type="file" style={{ display: "none" }} />
+            <label htmlFor="file"><MdAttachFile className="icons" title="Attach File" /></label>
+            <input type="text" placeholder="Type a message..." onChange={(e) => { setText(e.target.value) }} value={text} />
+            <IoSend className="icons" title="Send" onClick={handleSend}/>
+            <MdKeyboardVoice className="icons" title="Audio" />
+            <div className="emoji">
+                <BsEmojiSmileFill className="icons" title="Emoji" onClick={() => { setEmoji(prev => !prev) }} />
+                <EmojiPicker className="emojiPicker" open={openEmoji} onEmojiClick={(e) => { setText(prev => prev + e.emoji) }} />
+            </div>
         </div>
     </div>
 }

@@ -7,7 +7,7 @@ import useRegister from "./useRegister.js";
 function App() {
 
   const { wantToRegister } = useRegister();
-  const user = null;
+  const user = true;
 
   return (
     <div className="outerContainer">

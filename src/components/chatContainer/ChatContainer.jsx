@@ -13,7 +13,7 @@ export default function ChatContainer() {
         </div>
         <div className="bottom">
             <div className="iconBg">
-                <CiSettings className="icons" />
+                <CiSettings className="icons" title="Settings"/>
             </div>
             <div className="bottom-middle">
                 <div className="iconBg">

@@ -3,8 +3,8 @@ import "./addUser.css";
 import { userData } from "../../../userData";
 import useChatStore from "../../../useChatStore";
 
-const AddUser = ({search}) => {
-    const {chats, addToChats} = useChatStore();
+const AddUser = ({ search }) => {
+    const { chats, addToChats } = useChatStore();
     const [added, setAdded] = useState(chats);
     const [width, setWidth] = useState(window.screen.width);
 
@@ -36,7 +36,7 @@ const AddUser = ({search}) => {
                     <img src={user.img} alt="" />
                     <span>{user.name}</span>
                 </div>
-                <button onClick={() => handleAdd(user)}>{width <= 540 || (width >= 1240 && width <= 1325)? "Add" : "Add User"}</button>
+                <button onClick={() => handleAdd(user)}>{width <= 540 || (width >= 1240 && width <= 1325) ? "Add" : "Add User"}</button>
             </div>
         ))}
     </div>

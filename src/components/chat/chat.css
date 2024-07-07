@@ -147,6 +147,7 @@
       display: flex;
       align-items: center;
       gap: 15px;
+      position: relative;
 
       @media (max-width: 570px) {
         gap: 10px;
@@ -290,6 +291,16 @@
 
       &:active {
         scale: 0.8;
+      }
+    }
+
+    .emoji {
+      position: relative;
+
+      .emojiPicker {
+        position: absolute;
+        right: 0;
+        bottom: 35px;
       }
     }
   }
